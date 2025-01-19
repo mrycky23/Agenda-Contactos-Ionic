@@ -1,27 +1,25 @@
-#container {
+.opciones{
+  font-family: 'monospace';
+  font-size: 15px;
   text-align: center;
-
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
+  color: #0033ec;
 }
 
-#container strong {
+.titulo
+{
+  font-family: 'monospace';
+  font-weight: bold;
+  font-size: 50px;
+  text-align: center;
+  color: #0033ec;
+  margin-top: 10px;
+}
+
+.etiqueta
+{
+  font-weight: 'bold';
   font-size: 20px;
-  line-height: 26px;
-}
-
-#container p {
-  font-size: 16px;
-  line-height: 22px;
-
-  color: #8c8c8c;
-
-  margin: 0;
-}
-
-#container a {
-  text-decoration: none;
+  text-align: center;
+  color: #0c2375;
+  margin-top: 10px;
 }

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { LoadingController } from '@ionic/angular';
 
 @Component({
   selector: 'app-home',
@@ -7,7 +8,23 @@ import { Component } from '@angular/core';
   standalone: false,
 })
 export class HomePage {
+txt_usuario: string = "";
+txt_clave: string = "";  
+  constructor( private loadingCtrl: LoadingController) {}
 
-  constructor() {}
+  login()
+  {
+
+  }
+
+  crearCuenta()
+  {
+
+  }
+
+  reestablecerClave()
+  {
+
+  }
 
 }
