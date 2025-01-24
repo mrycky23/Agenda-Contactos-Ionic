@@ -23,6 +23,10 @@ const routes: Routes = [
     path: 'rclave',
     loadChildren: () => import('./rclave/rclave.module').then( m => m.RclavePageModule)
   },
+  {
+    path: 'ingreso-token',
+    loadChildren: () => import('./ingreso-token/ingreso-token.module').then( m => m.IngresoTokenPageModule)
+  },
 ];
 
 @NgModule({

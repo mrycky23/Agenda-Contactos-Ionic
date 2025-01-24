@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { LoadingController, ModalController, NavController } from '@ionic/angular';
 import { AccesoService } from '../servicio/acceso.service';
 import { CuentaPage } from '../cuenta/cuenta.page';
+import { RclavePage } from '../rclave/rclave.page';
+import { IngresoTokenPage } from '../ingreso-token/ingreso-token.page';
 
 @Component({
   selector: 'app-home',
@@ -29,6 +31,7 @@ txt_clave: string = "";
     }
     this.servicio.postData(datos).subscribe((res:any)=>{
       if(res.estado){
+        //Alamcena localmente los datos del usuario
        this.servicio.createSesion('idpersona', res.persona.codigo)
        this.servicio.createSesion('persona', res.persona.nombre)
        this.navCtrl.navigateRoot(['/menu'])
@@ -36,6 +39,13 @@ txt_clave: string = "";
         this.servicio.showToast("No existe persona", 3000)
       }
     });
+  }
+
+  async ingresarToken(){
+    const modal = await this.modalCtrl.create({
+      component: IngresoTokenPage
+    });
+    return await modal.present();
   }
 
   async crearCuenta()
@@ -46,9 +56,12 @@ txt_clave: string = "";
     return await modal.present();
   }
 
-  reestablecerClave()
+  async reestablecerClave()
   {
-
+    const modal = await this.modalCtrl.create({
+      component: RclavePage
+    });
+    return await modal.present();
   }
 
 }

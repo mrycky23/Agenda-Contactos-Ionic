@@ -27,12 +27,10 @@
 
       <ion-card-content>
         <ion-item>
-          <ion-label position="floating">Usuario</ion-label>
-          <ion-input type="text" [(ngModel)]="txt_usuario"></ion-input>
+          <ion-input label="Usuario" type="text" [(ngModel)]="txt_usuario"></ion-input>
         </ion-item>
         <ion-item>
-          <ion-label position="floating">Clave</ion-label>
-          <ion-input type="text" [(ngModel)]="txt_clave"></ion-input>
+          <ion-input label="Clave" type="text" [(ngModel)]="txt_clave"></ion-input>
         </ion-item>
         <ion-item>
           <ion-button expand="block" id="show_loading" color="succes" (click)="login()">Iniciar Sesion</ion-button>
@@ -48,7 +46,14 @@
               Recuperar clave
             </ion-button>
           </ion-buttons>
-  
+        </ion-item>
+        <ion-item>
+          <ion-buttons slot="start">
+            <ion-button (click)="ingresarToken()" fill="clear" size="small" color="medium"  fill="clear">
+            Tengo un token
+          </ion-button>
+          </ion-buttons>
+          
         </ion-item>
       </ion-card-content>
 

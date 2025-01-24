@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ToastController } from '@ionic/angular';
+import { ModalController, NavController, ToastController } from '@ionic/angular';
 import { Preferences} from '@capacitor/preferences';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
@@ -11,7 +11,8 @@ export class AccesoService {
 
   constructor(
     public ToastCtrl: ToastController,
-    public http: HttpClient
+    public http: HttpClient,
+    private modalCtrl: ModalController
   ) 
     { }
 
@@ -55,4 +56,27 @@ export class AccesoService {
       await Preferences.clear();
     }
 
+    async recoverPassword(email: string)
+    {
+      let body = {
+        'accion': 'recoverPassword', 
+        'email': email
+      };
+
+      try{
+        const response: any = await this.postData(body).toPromise();
+
+        if(response.estado){
+          await this.showToast(response.mensaje, 3000);
+          await this.modalCtrl.dismiss();
+        }else{
+          await this.showToast(response.mensaje, 3000);
+        }
+      }catch(error)
+      {
+        console.log(error);
+        await this.showToast("Error al conectar con el servidor", 3000);
+      }
+      
+    }
 }
