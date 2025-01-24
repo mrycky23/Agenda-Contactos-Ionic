@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { LoadingController, NavController } from '@ionic/angular';
+import { LoadingController, ModalController, NavController } from '@ionic/angular';
 import { AccesoService } from '../servicio/acceso.service';
+import { CuentaPage } from '../cuenta/cuenta.page';
 
 @Component({
   selector: 'app-home',
@@ -15,7 +16,8 @@ txt_clave: string = "";
 
   constructor( 
     private navCtrl: NavController,
-    private servicio: AccesoService
+    private servicio: AccesoService,
+    private modalCtrl: ModalController
   ) {}
 
   login()
@@ -36,9 +38,12 @@ txt_clave: string = "";
     });
   }
 
-  crearCuenta()
+  async crearCuenta()
   {
-
+    const modal = await this.modalCtrl.create({
+      component: CuentaPage
+    });
+    return await modal.present();
   }
 
   reestablecerClave()
