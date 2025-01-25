@@ -2,6 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { AuthService } from '../servicio/auth.service';
+import { ModalController } from '@ionic/angular';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-ingreso-token',
@@ -10,13 +12,16 @@ import { AuthService } from '../servicio/auth.service';
   standalone: false,
 })
 export class IngresoTokenPage implements OnInit {
-  email: string = '';
+  
   constructor(
     private route: ActivatedRoute,
-    private authService: AuthService
+    private authService: AuthService,
+    private modalCtrl: ModalController
   ) { }
 
+  email: string = '';
   token: string = '';
+  isTokenValid: boolean | null =null ;
   newPassword: string = '';
 
   ngOnInit() {
@@ -25,19 +30,44 @@ export class IngresoTokenPage implements OnInit {
     });
   }
 
-  recoverPassword() {
-    this.authService.recoverPassword(this.email).subscribe(
+// Validar token
+  validateToken() {
+    this.authService.validateToken(this.token).subscribe(
       (response: any) => {
         if (response.estado) {
-          alert('Se ha enviado un correo con el enlace para restablecer la contraseña.');
+          this.isTokenValid = true; // Si el token es válido, muestra el formulario
+        } else {
+          alert(response.mensaje);
+          this.isTokenValid = false; // Oculta el formulario si el token no es válido
+        }
+      },
+      (error) => {
+        console.error('Error al validar el token', error);
+        alert('Ocurrió un error al validar el token.');
+        this.isTokenValid = false;
+        this.modalCtrl.dismiss();
+      }
+    );
+  }
+  
+
+  resetPassword() {
+    this.authService.resetPassword(this.token, this.newPassword).subscribe(
+      (response: any) => {
+        if (response.estado) {
+          alert('Contraseña restablecida con éxito.');
         } else {
           alert(response.mensaje);
         }
       },
       (error) => {
-        console.error('Error al solicitar la recuperación', error);
+        console.error('Error al restablecer la contraseña', error);
         alert('Ocurrió un error. Inténtalo nuevamente.');
       }
     );
+  }
+
+  cancelar(){
+    this.modalCtrl.dismiss();
   }
 }

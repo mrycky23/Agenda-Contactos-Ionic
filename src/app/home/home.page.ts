@@ -31,7 +31,7 @@ txt_clave: string = "";
     }
     this.servicio.postData(datos).subscribe((res:any)=>{
       if(res.estado){
-        //Alamcena localmente los datos del usuario
+        //Almacena localmente los datos del usuario
        this.servicio.createSesion('idpersona', res.persona.codigo)
        this.servicio.createSesion('persona', res.persona.nombre)
        this.navCtrl.navigateRoot(['/menu'])
@@ -46,6 +46,7 @@ txt_clave: string = "";
       component: IngresoTokenPage
     });
     return await modal.present();
+    
   }
 
   async crearCuenta()
