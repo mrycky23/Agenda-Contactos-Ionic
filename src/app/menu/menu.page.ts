@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { NavController } from '@ionic/angular';
+import { MenuController, NavController } from '@ionic/angular';
 import { AccesoService } from '../servicio/acceso.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-menu',
@@ -12,7 +13,9 @@ export class MenuPage implements OnInit {
 nombre:string = "";
   constructor(
     private navCtrl: NavController,
-    private servicio: AccesoService
+    private servicio: AccesoService,
+    private router: Router,
+    private menuCtrl: MenuController
   ) 
   {
     this.servicio.getSession("persona").then((res:any)=>{
@@ -23,4 +26,12 @@ nombre:string = "";
   ngOnInit() {
   }
 
+  goToProfile(){
+    this.navCtrl.navigateForward('/perfil');
+  }
+
+  logout(){
+    this.router.navigate(['/home']);
+    this.menuCtrl.close();
+  }
 }

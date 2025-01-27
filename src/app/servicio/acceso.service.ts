@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { ModalController, NavController, ToastController } from '@ionic/angular';
 import { Preferences} from '@capacitor/preferences';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -24,6 +25,18 @@ export class AccesoService {
       }
       return this.http.post(this.server, JSON.stringify(body), options)
     }
+
+    // Obtener datos del perfil
+  getPerfil(codigo: string): Observable<any> {
+    const data = { accion: 'getProfile', codigo };
+    return this.http.post(this.server, data);
+  }
+
+  // Actualizar datos del perfil
+  actualizarPerfil(datos: any): Observable<any> {
+    const data = { ...datos, accion: 'updateProfile' };
+    return this.http.post(this.server, data);
+  }
 
     async showToast(mensaje: string, tiempo:number)
     {

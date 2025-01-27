@@ -27,6 +27,10 @@ const routes: Routes = [
     path: 'ingreso-token',
     loadChildren: () => import('./ingreso-token/ingreso-token.module').then( m => m.IngresoTokenPageModule)
   },
+  {
+    path: 'perfil',
+    loadChildren: () => import('./perfil/perfil.module').then( m => m.PerfilPageModule)
+  },
 ];
 
 @NgModule({

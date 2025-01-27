@@ -1,21 +1,32 @@
-<ion-menu>
+<ion-menu contentId="main-content">
   <ion-header>
     <ion-toolbar>
-      <ion-title>menu</ion-title>
+      <ion-title>Menu</ion-title>
     </ion-toolbar>
   </ion-header>
-  <ion-content class="ion-padding">This is the menu content.</ion-content>
+  <ion-content class="ion-padding">
+    <!-- Seccion del menu -->
+     <ion-list>
+      <ion-item button (click)="goToProfile()">
+        <ion-icon slot="start" name="person"></ion-icon>
+        <ion-label>Perfil</ion-label>
+      </ion-item>
+      <ion-item button (click)="logout()">
+        <ion-icon slot="start" name="log-out"></ion-icon>
+        <ion-label>Cerrar sesión</ion-label>
+      </ion-item>
+     </ion-list>
+  </ion-content>
 </ion-menu>
+<div class="ion-page" id="main-content">
   <ion-header>
     <ion-toolbar>
       <ion-buttons slot="start">
         <ion-menu-button></ion-menu-button>
       </ion-buttons>
-      <ion-title>Agenda</ion-title>
+      <ion-title>Inicio</ion-title>
     </ion-toolbar>
   </ion-header>
-<ion-content>
-  <ion-item>Bienvenido: {{nombre}}</ion-item>
-  <ion-label></ion-label>
-</ion-content>
+  <ion-content class="ion-padding"> Bienvenido {{nombre}} </ion-content>
+</div>
 

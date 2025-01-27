@@ -34,6 +34,8 @@ txt_clave: string = "";
         //Almacena localmente los datos del usuario
        this.servicio.createSesion('idpersona', res.persona.codigo)
        this.servicio.createSesion('persona', res.persona.nombre)
+       this.servicio.createSesion('cedula', res.persona.cedula)
+       this.servicio.createSesion('correo', res.persona.correo)
        this.navCtrl.navigateRoot(['/menu'])
       }else{
         this.servicio.showToast("No existe persona", 3000)
